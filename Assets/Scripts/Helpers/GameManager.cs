@@ -35,6 +35,9 @@ public class GameManager : Singleton<GameManager>
             case GameState.PAUSED:
                 Time.timeScale = 0f;
                 break;
+            case GameState.OVER:
+                Time.timeScale = 0f;
+                break;
             default:
                 Time.timeScale = 1f;
                 break;
@@ -77,6 +80,14 @@ public class GameManager : Singleton<GameManager>
             TransitToState(GameState.PAUSED);
         }
 
+    }
+
+    public void StartGame()
+    {
+        if (_currentGameState == GameState.MAINMENU)
+        {
+            TransitToState(GameState.GAMEPLAY);
+        }
     }
 
     public void GameOver()
